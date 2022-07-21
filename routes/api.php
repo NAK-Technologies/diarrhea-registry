@@ -29,7 +29,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/test', function (Request $request) {
-            return response('testing', 200);
+            $response = [
+                $request->user(),
+            ];
+            return response($response, 200);
         });
         Route::post('/logout', [AuthController::class, 'logout']);
     });

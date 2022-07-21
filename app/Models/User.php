@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'created_by',
+        'role'
     ];
 
     /**
@@ -45,5 +47,32 @@ class User extends Authenticatable
     public function patients()
     {
         return $this->hasMany(Patient::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == 'admin';
+    }
+
+    public function isViewer()
+    {
+        return $this->role == 'viewer';
+    }
+
+    public static function search($query = '', $all)
+    {
+        if ($all) {
+            return $query == '' ? static::orderBy('created_at', 'desc') : static::where(function ($q) use ($query) {
+                return $q->where('name', 'like', '%' . $query . '%')
+                    ->orWhere('city', 'like', '%' . $query . '%')
+                    ->orWhere('location', 'like', '%' . $query . '%');
+            });
+        } else {
+            return $query == '' ? static::where('created_by', auth()->user()->id) : static::where('created_by', auth()->user()->id)->where(function ($q) use ($query) {
+                return $q->where('name', 'like', '%' . $query . '%')
+                    ->orWhere('city', 'like', '%' . $query . '%')
+                    ->orWhere('location', 'like', '%' . $query . '%');
+            });
+        }
     }
 }
