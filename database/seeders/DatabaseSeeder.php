@@ -29,19 +29,19 @@ class DatabaseSeeder extends Seeder
         // ]);
         // \App\Models\User::factory(2)->create();
 
-        $users = User::all();
-        foreach ($users as $user) {
-            for ($i = 0; $i < 20; $i++) {
-                $user->create([
-                    'name' => fake()->name(),
-                    'email' => fake()->unique()->safeEmail(),
-                    'email_verified_at' => now(),
-                    'password' => Hash::make('123123123'),
-                    'role' => Arr::random(['user', 'viewer']),
-                    'created_by' => $user->id,
-                    'city' => City::inRandomOrder()->first()->id
-                ]);
-            }
-        }
+        // $users = User::all();
+        // foreach ($users as $user) {
+        //     for ($i = 0; $i < 20; $i++) {
+        //         $user->create([
+        //             'name' => fake()->name(),
+        //             'email' => fake()->unique()->safeEmail(),
+        //             'email_verified_at' => now(),
+        //             'password' => Hash::make('123123123'),
+        //             'role' => Arr::random(['user', 'viewer']),
+        //             'created_by' => $user->id,
+        //             'city' => City::inRandomOrder()->first()->id
+        //         ]);
+        //     }
+        // }
     }
 }

@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <livewire:user-all />
             <livewire:user-add />
+            <livewire:user-edit />
         </div>
     </div>
 </div>

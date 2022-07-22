@@ -19,6 +19,11 @@ class UserAll extends Component
         // dd('working');
     }
 
+    public function edit(User $user)
+    {
+        $this->emitTo('user-edit', 'edit', $user);
+    }
+
     public function render()
     {
         $users = User::search($this->search, $this->all)->with('city')->get();

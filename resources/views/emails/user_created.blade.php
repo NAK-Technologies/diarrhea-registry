@@ -7,9 +7,14 @@ Your account has been created.
 Button Text
 @endcomponent --}}
 
-Kindly login to our application using the credentials below:
-Username: {{ $user->email }}
-Password: {{ $password }}
+
+Kindly login to our application using the credentials below: <br><br>
+Username: {{ $user->email }}, <br>
+Password: {{ $password }}{{ $user->role == 'user' ? ',' : '.' }}
+@if($user->role == 'user')
+<br>Location: {{ $user->location }}.
+@endif
+
 
 Thanks,<br>
 {{ config('app.name') }}
