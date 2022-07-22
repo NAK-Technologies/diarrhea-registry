@@ -10,7 +10,7 @@ class UserAll extends Component
     public $search = '';
     public $all = false;
 
-    // protected $listeners = ['refresh' => 'render'];
+    protected $listeners = ['render'];
 
     public function toggleAll()
     {
@@ -21,7 +21,7 @@ class UserAll extends Component
 
     public function render()
     {
-        $users = User::search($this->search, $this->all)->get();
+        $users = User::search($this->search, $this->all)->with('city')->get();
 
         return view('livewire.user-all', ['users' => $users]);
     }

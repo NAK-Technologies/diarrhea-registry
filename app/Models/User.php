@@ -22,7 +22,9 @@ class User extends Authenticatable
         'email',
         'password',
         'created_by',
-        'role'
+        'role',
+        'city',
+        'location'
     ];
 
     /**
@@ -59,19 +61,28 @@ class User extends Authenticatable
         return $this->role == 'viewer';
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city');
+    }
+
     public static function search($query = '', $all)
     {
         if ($all) {
-            return $query == '' ? static::orderBy('created_at', 'desc') : static::where(function ($q) use ($query) {
+            return $query == '' ? static::where('role', '!=', 'admin') : static::where('role', '!=', 'admin')->where(function ($q) use ($query) {
                 return $q->where('name', 'like', '%' . $query . '%')
-                    ->orWhere('city', 'like', '%' . $query . '%')
-                    ->orWhere('location', 'like', '%' . $query . '%');
+                    ->orWhere('location', 'like', '%' . $query . '%')
+                    ->orWhereHas('city', function ($q) use ($query) {
+                        return $q->where('name', 'like', '%' . $query . '%');
+                    });
             });
         } else {
             return $query == '' ? static::where('created_by', auth()->user()->id) : static::where('created_by', auth()->user()->id)->where(function ($q) use ($query) {
                 return $q->where('name', 'like', '%' . $query . '%')
-                    ->orWhere('city', 'like', '%' . $query . '%')
-                    ->orWhere('location', 'like', '%' . $query . '%');
+                    ->orWhere('location', 'like', '%' . $query . '%')
+                    ->orWhereHas('city', function ($q) use ($query) {
+                        return $q->where('name', 'like', '%' . $query . '%');
+                    });
             });
         }
     }

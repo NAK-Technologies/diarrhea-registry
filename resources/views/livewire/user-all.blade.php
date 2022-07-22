@@ -1,5 +1,5 @@
 <div class="bg-white p-4">
-    <div class="d-flex align-items-center mb-4">
+    <div class="d-flex align-items-center gap-2 mb-4">
         <div class="input-group">
             <label for="all" class="m-2">All Users</label>
             <input type="checkbox" id="all" wire:click="toggleAll()">
@@ -7,6 +7,9 @@
         <div class="input-group d-flex align-items-center gap-2">
             <label for="search">Search</label>
             <input type="search" class="form-control bg-white" placeholder="Name / City / Location" wire:model.debounce.300ms="search">
+        </div>
+        <div class="input-group d-flex justify-content-end">
+            <span>Total Records: {{ $users->count() }}</span>
         </div>
     </div>
     <ul class="list-group">
@@ -17,7 +20,7 @@
             </span>
             <span class="text-muted">
                 <span>
-                    {{ $user->city ?? 'City' }} -
+                    {{ $user->city()->first()->name ?? 'City'}} -
                 </span>
                 <span>
                     {{ $user->location ?? 'Location' }}

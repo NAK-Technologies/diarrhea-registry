@@ -29,7 +29,6 @@ class CitySeeder extends Seeder
                 'name' => $city['city'],
                 'state' => $city['admin_name']
             ]);
-            dump($new);
         }
         // dd($cities);
     }

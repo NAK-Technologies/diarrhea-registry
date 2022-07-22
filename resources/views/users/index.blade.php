@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <livewire:user-all />
+            <livewire:user-add />
         </div>
     </div>
 </div>
