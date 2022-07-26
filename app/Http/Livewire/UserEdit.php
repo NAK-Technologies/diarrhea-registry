@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class UserEdit extends Component
@@ -37,6 +38,10 @@ class UserEdit extends Component
         $user->location = $this->location;
         $user->update();
         $this->emitTo('user-all', 'render');
+        $this->dispatchBrowserEvent(
+            'alert',
+            ['type' => 'error',  'message' => 'Something is Wrong!']
+        );
     }
 
     public function render()
