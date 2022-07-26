@@ -19,9 +19,11 @@ return new class extends Migration
             $table->integer('mr_no')->unique();
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
-            $table->string('contact');
-            $table->string('cnic');
-            $table->string('fullname');
+            $table->string('contact')->nullable();
+            $table->string('cnic')->nullable();
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
             $table->timestamps();
         });
     }

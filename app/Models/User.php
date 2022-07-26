@@ -69,7 +69,7 @@ class User extends Authenticatable
     public static function search($query = '', $all)
     {
         if ($all) {
-            return $query == '' ? static::where('role', '!=', 'admin') : static::where('role', '!=', 'admin')->where(function ($q) use ($query) {
+            return $query == '' ? static::where('id', '!=', auth()->user()->id) : static::where('id', '!=', auth()->user()->id)->where(function ($q) use ($query) {
                 return $q->where('name', 'like', '%' . $query . '%')
                     ->orWhere('location', 'like', '%' . $query . '%')
                     ->orWhereHas('city', function ($q) use ($query) {

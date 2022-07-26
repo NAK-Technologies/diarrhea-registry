@@ -115,9 +115,11 @@ class AuthController extends Controller
             ]);
 
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+                $abilities = [];
+                auth()->user()->role == 'admin' ? $abilities = ['*'] : (auth()->user()->role == 'viewer' ? $abilities = ['view-patients', 'view-demographics', 'view-records', 'view-reports'] : (auth()->user()->role == 'user' ? $abilities = ['create-patients', 'create-demographics', 'create-records', 'view-patients', 'view-records', 'view-demographics'] : ''));
                 $response = [
                     'user' => auth()->user(),
-                    'token' => auth()->user()->createToken('myapptoken')->plainTextToken,
+                    'token' => auth()->user()->createToken('myapptoken', $abilities)->plainTextToken,
                 ];
                 return response($response);
             } else {

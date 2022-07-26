@@ -89,6 +89,5 @@
     <script>
         @yield('custom-scripts')
     </script>
-
 </body>
 </html>

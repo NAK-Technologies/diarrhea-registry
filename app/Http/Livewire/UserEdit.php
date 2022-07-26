@@ -36,12 +36,17 @@ class UserEdit extends Component
         $user->role = $this->role;
         $user->city = explode('-', $this->city)[0];
         $user->location = $this->location;
-        $user->update();
+        if ($user->update()) {
+            toastr()->success($user->name . '\'s data updated successfully');
+        } else {
+            toastr()->error($user->name . '\'s data update failed');
+        }
+
         $this->emitTo('user-all', 'render');
-        $this->dispatchBrowserEvent(
-            'alert',
-            ['type' => 'error',  'message' => 'Something is Wrong!']
-        );
+        // $this->dispatchBrowserEvent(
+        //     'alert',
+        //     ['type' => 'success',  'message' => $user->name . '\'s Data Updated Successfully.']
+        // );
     }
 
     public function render()

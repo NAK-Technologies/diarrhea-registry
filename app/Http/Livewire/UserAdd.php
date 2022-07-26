@@ -40,6 +40,7 @@ class UserAdd extends Component
         UserCreated::dispatch($user, $password);
         $this->resetExcept();
         $this->emitTo('user-all', 'render');
+        toastr()->success(ucfirst($user->role) . ' ' . $user->name . ' created successfully');
         // dd($this->name, $this->email, $this->role, $this->city, $this->location);
     }
 
