@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PatientResource;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,10 +15,16 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index()
     {
-        $patients = $user->patients;
-        return dump($patients);
+        $patients = auth()->user()->patients;
+        // dump($patients->toArray());
+        // return $patients;
+        $data = [];
+        foreach ($patients as $patient) {
+            array_push($data, new PatientResource($patient));
+        }
+        return $data;
     }
 
     /**
@@ -38,14 +45,19 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
+        // dump($request->has('mr_no'));
+        // if ($request->has('mr_no')) {
+        //     return $this->update($request, Patient::where('mr_no', $request->mr_no)->first());
+        // }
+
         $r = $request->validate([
             'first_name' => 'required|string|max:32',
             'middle_name' => 'string|max:32',
             'last_name' => 'required|string|max:32',
             'father_name' => 'string|max:32',
             'mother_name' => 'string|max:32',
+            'cnic' => empty($request->contact) ? 'required|numeric|digits:13|unique:patients,cnic' : 'numeric|digits:13|unique:patients,cnic',
             'contact' => empty($request->nic) ? 'required|numeric|digits:11|unique:patients,contact' : 'numeric|unique:patients,contact|digits:11',
-            'cnic' => empty($request->contact) ? 'required|numeric|digits:13|unique:patients,nic' : 'numeric|digits:13|unique:patients,nic'
         ]);
 
         $data = [
@@ -69,7 +81,8 @@ class PatientController extends Controller
         //     'contact' => $r['contact']
         // ]);
         // dump($data);
-        return auth()->user()->patients()->create($data);
+        $patient =  auth()->user()->patients()->create($data);
+        return new PatientResource($patient);
     }
 
     /**
@@ -78,9 +91,11 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function checkMR(Request $request)
     {
-        //
+        $patient = Patient::where('mr_no', $request->mr_no)->first();
+        // return response($patient != null ? true : 'false');
+        return response($patient != null);
     }
 
     /**
@@ -103,7 +118,6 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
     }
 
     /**

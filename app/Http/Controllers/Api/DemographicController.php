@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\StoreDemographicRequest;
-use App\Http\Requests\UpdateDemographicRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Demographic;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DemographicController extends Controller
 {
@@ -15,7 +16,8 @@ class DemographicController extends Controller
      */
     public function index()
     {
-        //
+        $d = Demographic::getEnumValues('education');
+        dump($d);
     }
 
     /**
@@ -31,10 +33,10 @@ class DemographicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDemographicRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDemographicRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +66,11 @@ class DemographicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDemographicRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Demographic  $demographic
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDemographicRequest $request, Demographic $demographic)
+    public function update(Request $request, Demographic $demographic)
     {
         //
     }

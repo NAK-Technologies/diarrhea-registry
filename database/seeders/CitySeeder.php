@@ -17,7 +17,7 @@ class CitySeeder extends Seeder
      */
     public function run()
     {
-        City::truncate();
+        // City::truncate();
         $json = File::get('public/storage/assets/pk.json');
         // $json = Storage::disk('local')->get(storage_path() . '/assets/pk.json');
         // $json = File::get($json);

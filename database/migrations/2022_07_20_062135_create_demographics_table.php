@@ -19,8 +19,9 @@ return new class extends Migration
             $table->timestamp('dob');
             $table->integer('age')->nullable();
             $table->text('address')->nullable();
+            $table->enum('education', ['illiterate', 'literate', 'school grad.', 'college/university grad.'])->nullable();
             $table->string('occupation')->nullable();
-            $table->string('visit_type')->nullable();
+            $table->enum('visit_type', ['First time', 'Follow-up', 'OPD', 'Emergency'])->nullable();
             $table->boolean('exclusively_breastfed')->nullable();
             $table->timestamps();
         });

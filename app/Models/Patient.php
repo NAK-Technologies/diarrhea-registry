@@ -9,6 +9,8 @@ class Patient extends Model
 {
     use HasFactory;
 
+    // protected $primarykey = 'mr_no';
+
     protected $fillable = [
         'first_name',
         'middle_name',

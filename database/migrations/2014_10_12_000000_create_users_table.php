@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('role')->default('user');
             $table->string('email')->unique();
-            $table->foreignId('created_by')->default('Registered');
+            $table->foreignId('created_by')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

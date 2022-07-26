@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DemographicController;
 use App\Http\Controllers\Api\PatientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,10 @@ Route::group(['prefix' => 'v1'], function () {
         });
         Route::get('/patients', [PatientController::class, 'index'])->middleware('abilities:view-patients');
         Route::post('/patients/create', [PatientController::class, 'store'])->middleware(['auth:sanctum', 'abilities:create-patients']);
+        Route::post('/patients/check-mr_no', [PatientController::class, 'checkMR'])->middleware(['auth:sanctum', 'abilities:create-patients']);
+
+        Route::get('/demographics', [DemographicController::class, 'index']);
+
         Route::post('/logout', [AuthController::class, 'logout']);
     });
 });
