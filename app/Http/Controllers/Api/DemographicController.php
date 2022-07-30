@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Demographic;
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class DemographicController extends Controller
@@ -16,8 +18,9 @@ class DemographicController extends Controller
      */
     public function index()
     {
-        $d = Demographic::getEnumValues('education');
-        dump($d);
+
+        $values = Demographic::getEveryEnumValues();
+        return response($values);
     }
 
     /**
@@ -38,7 +41,37 @@ class DemographicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dob' => 'required|string',
+            'city_id' => 'required',
+            'area' => 'required|string',
+            'street' => 'nullable|string',
+            'house_no' => 'nullable|string',
+            'education' => 'required|string',
+            'visit_type' => 'required|string',
+            'exclusively_breastfed' => 'required|boolean'
+        ]);
+
+        $patient = Patient::where('mr_no', $request->mr_no);
+        // $patient = Patient::doesntHave('demographic')->where('mr_no', $request->mr_no)->firstOrFail();
+        // $patient->demographic()->create([]);
+        if ($patient = $patient->doesntHave('demographic')->first()) {
+            $patient = $patient->demographic()->create([
+                'dob' => $request->dob,
+                'city_id' => (int)$request->city_id,
+                'area' => $request->area,
+                'street' => $request->street ?? null,
+                'house_no' => $request->house_no ?? null,
+                'education' => $request->education,
+                'occupation' => $request->occupation,
+                'visit_type' => $request->visit_type,
+                'exclusively_breastfed' => (bool)$request->exclusively_breastfed,
+            ]);
+        } else {
+            return response("Patient's demographics already exists");
+        }
+
+        dump($patient);
     }
 
     /**

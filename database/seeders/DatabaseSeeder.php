@@ -19,14 +19,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(CitySeeder::class);
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Admin',
-        //     'email' => 'admin@dspss.com',
-        //     'password' => Hash::make('123123123'),
-        //     'role' => 'admin',
-        //     'city' => City::where('name', 'Karachi')->first()->id
-        // ]);
+        $this->call(CitySeeder::class);
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@dspss.com',
+            'password' => Hash::make('123123123'),
+            'role' => 'admin',
+            'city' => City::where('name', 'Karachi')->first()->id
+        ]);
         // \App\Models\User::factory(2)->create();
 
         // $users = User::all();

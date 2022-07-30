@@ -12,9 +12,11 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
+        "laravel/scout": "^9.4",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
+        "teamtnt/laravel-scout-tntsearch-driver": "^11.6",
         "yoeunes/toastr": "^2.0"
     },
     "require-dev": {

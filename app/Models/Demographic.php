@@ -11,14 +11,20 @@ class Demographic extends Model
 {
     use HasFactory, Helper;
 
+    protected $fillable = [
+        'dob',
+        'city_id',
+        'area',
+        'street',
+        'house_no',
+        'education',
+        'occupation',
+        'visit_type',
+        'exclusively_breastfed',
+    ];
+
     public function patient()
     {
         return $this->belongsTo(Patient::class);
     }
-
-    // public static function getEnumValues($col)
-    // {
-    //     $v = explode("','", substr(DB::select(DB::raw('SHOW COLUMNS FROM ' . (new static)->getTable() . ' WHERE Field = "' . $col . '"'))[0]->Type, 6, -2));
-    //     return $v;
-    // }
 }

@@ -17,12 +17,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('patient_id');
             $table->timestamp('dob');
-            $table->integer('age')->nullable();
-            $table->text('address')->nullable();
-            $table->enum('education', ['illiterate', 'literate', 'school grad.', 'college/university grad.'])->nullable();
-            $table->string('occupation')->nullable();
-            $table->enum('visit_type', ['First time', 'Follow-up', 'OPD', 'Emergency'])->nullable();
-            $table->boolean('exclusively_breastfed')->nullable();
+            // $table->text('address');
+            $table->foreignId('city_id');
+            $table->string('area');
+            $table->string('street')->nullable();
+            $table->string('house_no')->nullable();
+            $table->string('education');
+            $table->string('occupation');
+            $table->string('visit_type');
+            $table->boolean('exclusively_breastfed');
             $table->timestamps();
         });
     }
