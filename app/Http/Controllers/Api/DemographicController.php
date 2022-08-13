@@ -67,11 +67,10 @@ class DemographicController extends Controller
                 'visit_type' => $request->visit_type,
                 'exclusively_breastfed' => (bool)$request->exclusively_breastfed,
             ]);
+            return response('Data saved successfully');
         } else {
             return response("Patient's demographics already exists");
         }
-
-        dump($patient);
     }
 
     /**

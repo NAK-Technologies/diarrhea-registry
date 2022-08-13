@@ -186,7 +186,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        LaravelFrontendPresets\WhitePreset\WhitePresetServiceProvider::class,
         /*
          * Application Service Providers...
          */

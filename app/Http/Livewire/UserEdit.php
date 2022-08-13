@@ -16,17 +16,31 @@ class UserEdit extends Component
     public $location;
     public $user;
 
-    protected $listeners = ['edit'];
+    protected $listeners = ['edit', 'deselect'];
+
+    public function deselect()
+    {
+        $this->emitTo('user-all', 'deselect');
+        return $this->reset();
+    }
 
     public function edit(User $user)
     {
-        $this->dispatchBrowserEvent('openUserEditModal');
+        $this->emitTo('user-all', 'select', $user->id);
+        $this->emitTo('user-all', 'render');
+        if ($this->user != null && $this->user->id == $user->id) {
+            $this->deselect();
+            return false;
+        }
+
         $this->name = $user->name;
         $this->email = $user->email;
         $this->role = $user->role;
         $this->location = $user->location;
         $this->city = $user->city()->first()->id . '-' . $user->city()->first()->name;
         $this->user = $user;
+        // dd($this->user);
+        $this->render();
     }
 
     public function update(User $user)
@@ -36,6 +50,7 @@ class UserEdit extends Component
         $user->role = $this->role;
         $user->city = explode('-', $this->city)[0];
         $user->location = $this->location;
+        // dd($user);
         if ($user->update()) {
             toastr()->success($user->name . '\'s data updated successfully');
         } else {
