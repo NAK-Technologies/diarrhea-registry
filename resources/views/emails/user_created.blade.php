@@ -12,7 +12,7 @@ Kindly login to our application using the credentials below: <br><br>
 Username: {{ $user->email }}, <br>
 Password: {{ $password }}{{ $user->role == 'user' ? ',' : '.' }}
 @if($user->role == 'user')
-<br>Location: {{ $user->location }}.
+<br>Location: {{ $user->location }}
 @endif
 
 

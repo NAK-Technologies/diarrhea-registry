@@ -17,6 +17,12 @@
                     <p>{{ _('User Management') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'questions') class="active " @endif>
+                <a href="{{ route('questions.index')  }}">
+                    <i class="tim-icons icon-single-copy-04"></i>
+                    <p>{{ _('Questions') }}</p>
+                </a>
+            </li>
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>

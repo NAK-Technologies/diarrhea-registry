@@ -19,13 +19,25 @@
         <!-- CSS -->
         <link href="{{ asset('white') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('white') }}/css/theme.css" rel="stylesheet" />
+        <style>
+            /* input{
+                transition: 0.4s all ease !important;
+            }
+            input::placeholder{
+                color: #124a75 !important;
+            }
+            input:focus{
+                background: transparent !important;
+            } */
+        </style>
         @livewireStyles
     </head>
     <body class="white-content {{ $class ?? '' }}">
+        <div id="particles-js" class="bg-" style="background-color: offwhite; position:fixed; top:0; left:0; height: 100vh; width: 100vw; z-index: 0;"></div>
         @auth()
             <div class="wrapper">
                     @include('layouts.navbars.sidebar')
-                <div class="main-panel">
+                <div class="main-panel" style="background: transparent !important; backdrop-filter: opacity(0.7)">
                     @include('layouts.navbars.navbar')
 
                     <div class="content">
@@ -62,7 +74,7 @@
         @else
             @include('layouts.navbars.navbar')
             <div class="wrapper wrapper-full-page">
-                <div class="full-page {{ $contentClass ?? '' }}">
+                <div class="full-page {{ $contentClass ?? '' }}" style="background: transparent !important;">
                     <div class="content">
                         <div class="container">
                             @yield('content')
@@ -194,6 +206,10 @@
                     });
                 });
             });
+        </script>
+        <script src="{{ asset('js/particles.js') }}"></script>
+        <script>
+            particlesJS.load('particles-js', '{{ asset("js/particles.json") }}')
         </script>
         @stack('js')
         @livewireScripts

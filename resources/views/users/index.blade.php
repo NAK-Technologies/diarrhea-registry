@@ -1,4 +1,4 @@
-@extends('layouts.app', ['pageSlug' => 'user-management'])
+@extends('layouts.app', ['pageSlug' => 'users'])
 
 @section('content')
     {{-- <div class="row">
@@ -59,7 +59,7 @@
 </div> --}}
 <div class="row">
                     <div class="col-8">
-                        <h4 class="card-title">Add New User</h4>
+                        <h4 class="card-title text-dark">Add New User</h4>
                     </div>
                     <div class="col-4 text-right">
                         
@@ -68,13 +68,13 @@
 <livewire:user-add />
 <div class="row mt-5">
     <div class="col-5">
-        <h4 class="card-title">Users</h4>
+        <h4 class="card-title text-dark">Users</h4>
         <div class="col-4 text-right">
             
         </div>
     </div>
     <div class="col-5 offset-md-1">
-        <h4 class="card-title">Edit User Details</h4>
+        <h4 class="card-title text-dark">Edit User Details</h4>
         <div class="col-4 text-right">
             
         </div>

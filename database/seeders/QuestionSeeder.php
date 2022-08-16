@@ -27,8 +27,23 @@ class QuestionSeeder extends Seeder
                 'group' => 'demographics',
             ],
             [
+                'question' => 'Exclusively Breastfed',
+                'options' => json_encode(['Yes', 'No']),
+                'group' => 'demographics',
+            ],
+            [
                 'question' => 'Primary Complaint',
                 'options' => json_encode(['loose stools', 'Diarrhea']),
+                'group' => 'presenting complaints',
+            ],
+            [
+                'question' => 'Start Date',
+                'options' => json_encode([]),
+                'group' => 'presenting complaints',
+            ],
+            [
+                'question' => 'End Date',
+                'options' => json_encode([]),
                 'group' => 'presenting complaints',
             ],
             [
@@ -59,6 +74,16 @@ class QuestionSeeder extends Seeder
                 'group' => 'presenting complaints',
             ],
             [
+                'question' => 'Blood from any other site',
+                'options' => json_encode(['Yes', 'No']),
+                'group' => 'presenting complaints',
+            ],
+            [
+                'question' => 'Lump in back passage',
+                'options' => json_encode(['Yes', 'No']),
+                'group' => 'presenting complaints',
+            ],
+            [
                 'question' => 'Past similar episode(s) of diarrhea',
                 'options' => json_encode([
                     'last_episode' => [
@@ -68,6 +93,11 @@ class QuestionSeeder extends Seeder
                         'serious', 'non-serious'
                     ]
                 ]),
+                'group' => 'past history',
+            ],
+            [
+                'question' => 'Previous Hopitalization due to diarrhea',
+                'options' => json_encode(['Yes', 'No']),
                 'group' => 'past history',
             ],
             [
@@ -89,6 +119,21 @@ class QuestionSeeder extends Seeder
                 'group' => 'lifestyle',
             ],
             [
+                'question' => 'Suspected Food',
+                'options' => json_encode([]),
+                'group' => 'lifestyle',
+            ],
+            [
+                'question' => 'Regular soap use',
+                'options' => json_encode(['Yes', 'No']),
+                'group' => 'lifestyle',
+            ],
+            [
+                'question' => 'Animals at home',
+                'options' => json_encode(['Yes', 'No']),
+                'group' => 'lifestyle',
+            ],
+            [
                 'question' => 'Systemic review',
                 'options' => json_encode(['not significant', 'significant']),
                 'group' => 'systemic review',
@@ -101,6 +146,11 @@ class QuestionSeeder extends Seeder
             [
                 'question' => 'Compliance to medicine',
                 'options' => json_encode(['As per doctors advice', 'Stopped medicine him/herself']),
+                'group' => 'treatment history',
+            ],
+            [
+                'question' => 'Blood transfusion',
+                'options' => json_encode(['Yes', 'No']),
                 'group' => 'treatment history',
             ],
             [
@@ -167,10 +217,23 @@ class QuestionSeeder extends Seeder
                     'clinically confirmed', 'laboratory confirmed', 'epidemiologically confirmed'
                 ]),
                 'group' => 'confirmation of diagnosis',
-            ]
+            ],
+            [
+                'question' => 'Differential diagnosis',
+                'options' => json_encode(['Yes', 'No']),
+                'group' => 'differential diagnosis',
+            ],
+            [
+                'question' => 'Lump in back passage',
+                'options' => json_encode([
+                    'dosage' => [],
+                    'advice' => [],
+                    'labs' => []
+                ]),
+                'group' => 'precription/lab advice',
+            ],
+
         ];
-        Question::create(
-            
-        );
+        Question::create();
     }
 }

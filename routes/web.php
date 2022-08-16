@@ -47,5 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
+	Route::view('/questions', 'questions.index')->name('questions.index');
+
 	// Route::get('/user-management', )->name('user.index');
 });

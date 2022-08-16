@@ -14,7 +14,7 @@
     </div>
     <ul class="list-group">
         @forelse($users as $user)
-        <li class="list-group-item {{ $selected == $user->id ? 'active' : '' }} d-flex p-2 justify-content-between list-group-item-action" wire:dirty.class="active"  wire:click="edit({{ $user }})">
+        <li class="list-group-item  {{ $selected == $user->id ? 'active' : '' }} d-flex p-2 justify-content-between list-group-item-action" wire:dirty.class="active"  wire:click="edit({{ $user }})">
             <span>
                 {{-- <i class="tim-icons {{ $user->role == 'admin' ? 'icon-single-02' : ($user->role == 'viewer' ? 'bi-eye-fill' : '') }} text-info"></i> --}}
                 {{ $user->name }}
