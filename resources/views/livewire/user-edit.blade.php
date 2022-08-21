@@ -113,7 +113,7 @@ window.addEventListener('openUserEditModal', event => {
           <div class="col-4">
             {{-- <label for="role" class="col-form-label"></label> --}}
             {{-- <br> --}}
-            <button type="button" class="btn btn-primary mt-2 float-right" wire:click="update({{ $user }})" data-bs-dismiss="modal">Update</button>
+            <button type="button" wire:loading.attr='disabled' class="btn btn-primary mt-2 float-right" wire:click="update({{ $user }})" data-bs-dismiss="modal">Update</button>
           </div>
         </div>
       </div>

@@ -33,6 +33,6 @@ class UserCreatedMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user_created')->subject("Welcome To DSPSS");
+        return $this->markdown('emails.user_created')->subject("Welcome to Delher");
     }
 }

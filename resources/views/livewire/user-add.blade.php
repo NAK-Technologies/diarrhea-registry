@@ -45,7 +45,7 @@
           <div class="col-4">
             {{-- <label for="role" class="col-form-label"></label> --}}
             {{-- <br> --}}
-            <button type="button" class="btn btn-primary mt-2 float-right" wire:click="store" data-bs-dismiss="modal">Create</button>
+            <button type="button" wire:loading.attr='disabled' class="btn btn-primary mt-2 float-right" wire:click="store" data-bs-dismiss="modal">Create</button>
           </div>
         </div>
       </div>
