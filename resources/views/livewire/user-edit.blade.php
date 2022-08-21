@@ -72,11 +72,11 @@ window.addEventListener('openUserEditModal', event => {
         <div class="row">
           <div class="col-4">
             <label for="name" class="col-form-label">Name: {{ $name }}</label>
-            <input type="text" class="form-control" wire:model="name" id="name">
+            <input type="text" class="form-control" wire:model.defer="name" id="name">
           </div>
           <div class="col-4 mt-2">
             <label for="cities">City</label>
-            <input type="text" list="cities" class="form-control" wire:model="city">
+            <input type="text" list="cities" class="form-control" wire:model.defer="city">
             <datalist id="cities">
                 @foreach($cities as $city)
                 <option value="{{ $city->id }}-{{ $city->name }}">({{ $city->state }})</option>
@@ -87,12 +87,12 @@ window.addEventListener('openUserEditModal', event => {
         <div class="row">
           <div class="col-4">
             <label for="email" class="col-form-label">Email:</label>
-            <input type="text" class="form-control" id="email" wire:model="email">
+            <input type="text" class="form-control" id="email" wire:model.defer="email">
             @error('email') <span class="error">{{ $message }}</span> @enderror
           </div>
           <div class="col-4 mt-2">
             <label for="location">Location:</label>
-            <input type="text" id="location" class="form-control" wire:model="location" list="locations">
+            <input type="text" id="location" class="form-control" wire:model.defer="location" list="locations">
             <datalist id="locations">
                 @foreach($locations as $location)
                 <option value="{{ $location }}"></option>
@@ -103,7 +103,7 @@ window.addEventListener('openUserEditModal', event => {
         <div class="row">
           <div class="col-4">
             <label for="role" class="col-form-label">Role:</label>
-            <select id="role" class="form-control" wire:model="role">
+            <select id="role" class="form-control" wire:model.defer="role">
                 <option value=""></option>
                 <option value="user">User</option>
                 <option value="viewer">Viewer</option>
