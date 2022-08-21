@@ -8,7 +8,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand text-muted " style="letter-spacing: 0.4em; font-size: 1.5em" href="#">DELHER</a>
+            <a class="navbar-brand text-muted " style="letter-spacing: 0.4em; font-size: 1.5em" href="#">DELHER1</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
