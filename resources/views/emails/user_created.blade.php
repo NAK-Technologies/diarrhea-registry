@@ -16,6 +16,6 @@ Password: {{ $password }}{{ $user->role == 'user' ? ',' : '.' }}
 @endif
 
 
-Thanks,<br>
+Regards,<br>
 {{ config('app.name') }}
 @endcomponent

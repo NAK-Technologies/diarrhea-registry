@@ -45,19 +45,24 @@ class UserEdit extends Component
 
     public function update(User $user)
     {
-        $user->name = $this->name;
-        $user->email = $this->email;
-        $user->role = $this->role;
-        $user->city = explode('-', $this->city)[0];
-        $user->location = $this->location;
-        // dd($user);
-        if ($user->update()) {
-            toastr()->success($user->name . '\'s data updated successfully');
-        } else {
-            toastr()->error($user->name . '\'s data update failed');
-        }
+        if (!empty($this->name) && !empty($this->email) && !empty($this->role) && !empty($this->city) && !empty($this->location)) {
 
-        $this->emitTo('user-all', 'render');
+            $user->name = $this->name;
+            $user->email = $this->email;
+            $user->role = $this->role;
+            $user->city = explode('-', $this->city)[0];
+            $user->location = $this->location;
+            // dd($user);
+            if ($user->update()) {
+                toastr()->success($user->name . '\'s data updated successfully');
+            } else {
+                toastr()->error($user->name . '\'s data update failed');
+            }
+
+            $this->emitTo('user-all', 'render');
+        } else {
+            toastr()->error('All fields must be filled.');
+        }
         // $this->dispatchBrowserEvent(
         //     'alert',
         //     ['type' => 'success',  'message' => $user->name . '\'s Data Updated Successfully.']
