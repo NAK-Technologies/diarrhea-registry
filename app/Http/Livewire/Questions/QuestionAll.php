@@ -21,7 +21,7 @@ class QuestionAll extends Component
 
     public function render()
     {
-        $questions = Question::search($this->search, $this->all)->latest()->get()->groupBy('group');
+        $questions = Question::search($this->search, $this->all)->get()->groupBy('group');
         // dd($questions);
         return view('livewire.questions.question-all', ['questions' => $questions]);
     }

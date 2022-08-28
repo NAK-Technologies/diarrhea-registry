@@ -20,4 +20,8 @@ class Option extends Model
     {
         return $this->hasMany(Option::class, 'parent_id', 'id');
     }
+
+    protected $hidden = [
+        'is_active', 'created_at', 'updated_at', 'parent_id'
+    ];
 }

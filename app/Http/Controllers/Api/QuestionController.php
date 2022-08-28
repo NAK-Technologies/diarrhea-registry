@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller
 {
@@ -14,7 +15,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = Question::where('is_active', true)->where('parent_id', 0)->with(['options', 'options.options'])->get()->groupBy('group');
+        return response($questions);
     }
 
     /**

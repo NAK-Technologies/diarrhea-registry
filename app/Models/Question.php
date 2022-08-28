@@ -54,4 +54,8 @@ class Question extends Model
                 });
         }
     }
+
+    protected $hidden = [
+        'is_active', 'created_at', 'updated_at', 'parent_id'
+    ];
 }

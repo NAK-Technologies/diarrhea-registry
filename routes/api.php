@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\AnswerController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\DemographicController;
 use App\Http\Controllers\Api\PatientController;
+use App\Http\Controllers\Api\QuestionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +45,10 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::get('/demographics', [DemographicController::class, 'index']);
         Route::post('/demographics/create', [DemographicController::class, 'store']);
+
+        Route::post('/add-answers', [AnswerController::class, 'store']);
+
+        Route::get('/questions', [QuestionController::class, 'index']);
 
         Route::get('/cities', [CityController::class, 'index']);
 
