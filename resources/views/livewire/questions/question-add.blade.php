@@ -24,7 +24,7 @@
                 @enderror
                 <datalist id="groups">
                   @foreach($groups as $group)
-                  <option value="{{ $group }}"></option>
+                  <option value="{{ ucwords(implode(' ', explode('-', $group))) }}"></option>
                   @endforeach
                 </datalist>
               </div>
