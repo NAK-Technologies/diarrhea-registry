@@ -10,6 +10,48 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
-        'question', 'options', 'group'
+        'question', 'parent_id', 'group'
     ];
+
+    public function options()
+    {
+        return $this->hasMany(Option::class, 'parent_id', 'id');
+    }
+
+    public static function search($query = '', $all)
+    {
+        if ($all) {
+            return $query == '' ?
+                static::query() : static::where(function ($q) use ($query) {
+                    return $q->where('question', 'like', '%' . $query . '%');
+                })
+                ->orWhere(function ($q) use ($query) {
+                    return $q->where('group', 'like', '%' . $query . '%');
+                })
+                ->orWhereHas('options', function ($q) use ($query) {
+                    return $q->where('question', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('options.options', function ($q) use ($query) {
+                    return $q->where('question', 'LIKE', '%' . $query . '%');
+                });
+        } else {
+            return $query == '' ? static::query()
+                ->where('is_active', true) : static::where(function ($q) use ($query) {
+                    return $q->where('question', 'like', '%' . $query . '%')
+                        ->where('is_active', true);
+                })
+                ->orWhere(function ($q) use ($query) {
+                    return $q->where('group', 'like', '%' . $query . '%')
+                        ->where('is_active', true);
+                })
+                ->orWhereHas('options', function ($q) use ($query) {
+                    return $q->where('question', 'LIKE', '%' . $query . '%')
+                        ->where('is_active', true);
+                })
+                ->orWhereHas('options.options', function ($q) use ($query) {
+                    return $q->where('question', 'LIKE', '%' . $query . '%')
+                        ->where('is_active', true);
+                });
+        }
+    }
 }
