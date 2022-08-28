@@ -121,7 +121,8 @@ class QuestionAdd extends Component
     {
 
         // dd($questions);
-
-        return view('livewire.questions.question-add');
+        $groups = Question::select('group')->distinct()->orderBy('group', 'asc')->get()->pluck('group');
+        // dd($groups);
+        return view('livewire.questions.question-add', ['groups' => $groups]);
     }
 }

@@ -18,10 +18,15 @@
             <div class="row">
               <div class="col-12">
                 <label for="group" class="col-form-label">Group: </label>
-                <input type="text" class="form-control" wire:model.defer="group" placeholder="lifestyle / demographics / travel history ... " id="group">
+                <input type="text" class="form-control" list="groups" wire:model.defer="group" placeholder="lifestyle / demographics / travel history ... " id="group">
                 @error('group')
                   <span class="text-danger" style="font-size: 0.7em">{{ $message }}</span><br>
                 @enderror
+                <datalist id="groups">
+                  @foreach($groups as $group)
+                  <option value="{{ $group }}"></option>
+                  @endforeach
+                </datalist>
               </div>
             </div>
           </div>
