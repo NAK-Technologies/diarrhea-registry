@@ -25,7 +25,7 @@
                 <div class="card-header" id="groupheading-{{ $group }}">
                 <h5 class="mb-0">
                     <button class="btn btn-link" data-toggle="collapse" data-target="#groupCollapse-{{ $group }}" aria-expanded="true" aria-controls="groupCollapse-{{ $group }}">
-                    {{ $group }}
+                    {{ ucwords(implode(' ', explode('-', $group))) }}
                     </button>
                 </h5>
                 </div>

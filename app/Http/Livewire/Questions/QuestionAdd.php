@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Questions;
 
 use App\Models\Question;
 use Livewire\Component;
+use Str;
 
 class QuestionAdd extends Component
 {
@@ -79,17 +80,19 @@ class QuestionAdd extends Component
             'question' => 'required',
         ]);
 
+        $group = Str::kebab($this->group);
+
         $q = Question::create([
             'question' => $this->question,
             'parent_id' => 0,
-            'group' => $this->group,
+            'group' => $group,
         ]);
 
         if ($this->hasOptions) {
             foreach ($this->options as $index => $option) {
                 $o = Question::create([
                     'question' => $option,
-                    'group' => $this->group,
+                    'group' => $group,
                     'parent_id' => $q->id,
                 ]);
                 // dd($index, $this->hasSubOptionsArr);
@@ -98,7 +101,7 @@ class QuestionAdd extends Component
                         $so = Question::create([
                             'question' => $subOption,
                             'parent_id' => $o->id,
-                            'group' => $this->group
+                            'group' => $group
                         ]);
                     }
                 }
