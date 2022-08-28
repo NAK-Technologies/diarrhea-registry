@@ -20,12 +20,13 @@
         // echo $hex;
 
     @endphp
+    @php $group = implode('', explode('/', $group)) @endphp
         <div id="accordion-{{ $group }}">
             <div class="card">
                 <div class="card-header" id="groupheading-{{ $group }}">
                 <h5 class="mb-0">
                     <button class="btn btn-link" data-toggle="collapse" data-target="#groupCollapse-{{ $group }}" aria-expanded="true" aria-controls="groupCollapse-{{ $group }}">
-                    {{ ucwords(implode(' ', explode('-', $group))) }}
+                    {{ ucwords(implode(' ', explode('-', addslashes($group)))) }}
                     </button>
                 </h5>
                 </div>
