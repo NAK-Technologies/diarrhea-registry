@@ -15,6 +15,7 @@ class QuestionAdd extends Component
     public $subOptions = [];
     public $question;
     public $group;
+    public $alias;
 
     protected $listeners = ['refresh' => '$refresh'];
 
@@ -78,6 +79,7 @@ class QuestionAdd extends Component
         $this->validate([
             'group' => 'required',
             'question' => 'required',
+            'alias' => 'required',
         ]);
 
         $group = Str::kebab($this->group);
@@ -86,6 +88,7 @@ class QuestionAdd extends Component
             'question' => $this->question,
             'parent_id' => 0,
             'group' => $group,
+            'alias' => $this->alias,
         ]);
 
         if ($this->hasOptions) {

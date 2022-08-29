@@ -27,4 +27,9 @@ class Demographic extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }

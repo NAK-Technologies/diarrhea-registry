@@ -211,7 +211,9 @@
         <script>
             particlesJS.load('particles-js', '{{ asset("js/particles.json") }}')
         </script>
+        <script src="{{ asset('white') }}/js/plugins/chartjs.min.js"></script>
         @stack('js')
         @livewireScripts
+    
     </body>
 </html>

@@ -29,6 +29,12 @@
                 </datalist>
               </div>
             </div>
+            <div class="row">
+              <div class="col-12">
+                <label for="alias" class="col-form-label">Name on Chart: </label>
+                <input type="text" class="form-control" wire:model.defer="alias" placeholder="" id="alias">
+              </div>
+            </div>
           </div>
           {{-- <div class="col-4 mt-2">
             <datalist id="cities">

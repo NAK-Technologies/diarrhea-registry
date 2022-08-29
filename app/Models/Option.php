@@ -13,12 +13,17 @@ class Option extends Model
 
     public function question()
     {
-        return $this->belongsTo(Question::class, 'parent_id', 'id');
+        return $this->belongsTo(Question::class, 'parent_id', 'id')->where('is_active', true);
     }
 
     public function options()
     {
-        return $this->hasMany(Option::class, 'parent_id', 'id');
+        return $this->hasMany(Option::class, 'parent_id', 'id')->where('is_active', true);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class, 'question_id');
     }
 
     protected $hidden = [
